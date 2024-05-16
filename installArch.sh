@@ -25,4 +25,4 @@ mkdir other
 cd other
 git clone https://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@github.com/jonesy-b-dev/LinuxConfigFiles
 cd LinuxConfigFiles
-lcf.sh -ibn
+cp -pr configs/.
