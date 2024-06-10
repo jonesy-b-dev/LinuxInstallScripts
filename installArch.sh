@@ -7,7 +7,7 @@ makepkg -si
 yay -S brave-bin
 
 # Install other packages
-sudo pacman -S vi vim ripgrep neovim unzip alacritty feh rofi lxappearance ttf-font-awesome polybar tree picom cmake man man-pages
+sudo pacman -S vi vim ripgrep neovim unzip alacritty feh rofi lxappearance ttf-font-awesome polybar tree picom cmake man man-pages tldr btop
 
 # Install font
 cd ~
