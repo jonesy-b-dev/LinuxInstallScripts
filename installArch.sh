@@ -1,6 +1,6 @@
 # Install yay AUR
 sudo pacman -S git
-git clone https://aur.archlinux.org/yay-git.git && cd yay
+git clone https://aur.archlinux.org/yay-git.git && cd yay-git
 makepkg -si
 
 #install Brave
@@ -13,7 +13,7 @@ sudo pacman -S vi vim ripgrep neovim unzip alacritty feh rofi lxappearance ttf-f
 cd ~
 mkdir downloads
 cd downloads
-curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip
+curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip Hermit.zip
 mkdir /usr/share/fonts/Hermit
 unzip Hermit.zip -d /usr/share/fonts/Hermit
 
