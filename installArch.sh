@@ -14,8 +14,8 @@ cd ~
 mkdir downloads
 cd downloads
 curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip Hermit.zip
-mkdir /usr/share/fonts/Hermit
-unzip Hermit.zip -d /usr/share/fonts/Hermit
+sudo mkdir /usr/share/fonts/Hermit
+sudo unzip Hermit.zip -d /usr/share/fonts/Hermit
 
 # Setup configs
 cd ~
