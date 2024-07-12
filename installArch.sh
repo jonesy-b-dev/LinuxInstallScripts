@@ -12,7 +12,7 @@ sudo pacman -S vi vim ripgrep neovim unzip alacritty feh rofi lxappearance ttf-f
 cd ~
 mkdir downloads
 cd downloads
-curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip Hermit.zip
+curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip -o Hermit.zip
 sudo mkdir /usr/share/fonts/Hermit
 sudo unzip Hermit.zip -d /usr/share/fonts/Hermit
 
