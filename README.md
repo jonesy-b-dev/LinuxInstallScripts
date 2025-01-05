@@ -17,3 +17,6 @@ chmod +x installArch.sh
 # Run the script
 ./installArch.sh
 ```
+
+## To Do
+* [ ] Add pacman install list `$ pacman -Qqe > pkglist.txt`
