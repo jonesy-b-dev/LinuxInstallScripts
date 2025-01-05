@@ -1,5 +1,5 @@
 # Install yay AUR
-pacman -S debugedit
+pacman -S debugedit fakeroot
 git clone https://aur.archlinux.org/yay-git.git && cd yay-git
 makepkg -si
 
