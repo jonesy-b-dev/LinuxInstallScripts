@@ -20,3 +20,4 @@ chmod +x installArch.sh
 
 ## To Do
 * [ ] Add pacman install list `$ pacman -Qqe > pkglist.txt`
+* [ ] Seperate Xorg and Wayland script?
