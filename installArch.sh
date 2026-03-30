@@ -7,7 +7,7 @@ makepkg -si
 yay -S brave-bin
 
 # Install other packages
-sudo pacman -S vi vim ripgrep neovim unzip alacritty feh rofi lxappearance ttf-font-awesome polybar tree picom cmake man man-pages tldr btop xclip xrandr gdb fd lazygit
+sudo pacman -S vi vim ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit lf fish
 
 # Install font
 cd ~
@@ -17,12 +17,5 @@ curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.
 sudo mkdir /usr/share/fonts/Hermit
 sudo unzip Hermit.zip -d /usr/share/fonts/Hermit
 
-# Setup configs
-cd ~
-mkdir dev
-cd dev
-mkdir other
-cd other
-git clone https://github.com/jonesy-b-dev/LinuxConfigFiles
-cd LinuxConfigFiles
-./lcf.sh 
+# Enable pacman timer
+sudo systemctl enable --now paccache.timer
