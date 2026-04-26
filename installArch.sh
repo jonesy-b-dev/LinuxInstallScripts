@@ -7,7 +7,7 @@ makepkg -si
 yay -S brave-bin
 
 # Install other packages
-sudo pacman -S vi vim curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit lf fish
+sudo pacman -S vi vim curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish
 
 # Install font
 cd ~
