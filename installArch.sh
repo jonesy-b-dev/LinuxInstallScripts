@@ -55,10 +55,10 @@ fi
 if [[ "$install_hermit" == "y" || "$install_hermit" == "Y" ]]; then
   echo "Installing Hermit Nerd Font..."
   cd ~
-  mkdir downloads
-  cd downloads
+  mkdir -p Downloads
+  cd Downloads
   curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip -o Hermit.zip
-  sudo mkdir /usr/share/fonts/Hermit
+  sudo mkdir -p /usr/share/fonts/Hermit
   sudo unzip Hermit.zip -d /usr/share/fonts/Hermit
   echo "Hermit Nerd font installed"
 else
