@@ -15,18 +15,19 @@ read -p "Do you want to install the Hyprland ecosystem? (y/n): " install_hyprlan
 read -p "Do you want to install Brave browser? (y/n): " install_brave
 read -p "Do you want to install Hermit Nerd font? (y/n): " install_hermit
 
-echo "Installing yay..."
-pacman -S base-devel
-git clone https://aur.archlinux.org/yay-git.git && cd yay-git
-makepkg -si
+sudo pacman -Sy
 
-#install Brave
-if [[ "$install_brave" == "y" || "$install_brave" == "Y" ]]; then
-  yay -S brave-bin
-  echo "Brave installed"
-else
-  echo "Skipping Brave install"
+# Install yay AUR
+echo "Installing yay..."
+sudo pacman -S base-devel
+mkdir -p "${HOME}/dev/other"
+cd "${HOME}/dev/other"
+if [ ! -d "${HOME}/dev/other/yay-git" ]
+then
+    git clone https://aur.archlinux.org/yay-git.git "${HOME}/dev/other/yay-git"
 fi
+cd yay-git
+makepkg -si
 
 # Install other packages
 echo "Installing base packages..."
@@ -39,6 +40,15 @@ if [[ "$install_hyprland" == "y" || "$install_hyprland" == "Y" ]]; then
     echo "Hyprland installed successfully."
 else
     echo "Skipping Hyprland installation."
+fi
+
+#Install Brave
+if [[ "$install_brave" == "y" || "$install_brave" == "Y" ]]; then
+	echo "Installing Brave..."
+	yay -S brave-bin
+	echo "Brave installed"
+else
+	echo "Skipping Brave install"
 fi
 
 # Install font
