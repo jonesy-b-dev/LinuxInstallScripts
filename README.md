@@ -17,9 +17,3 @@ chmod +x installArch.sh
 # Run the script
 ./installArch.sh
 ```
-
-## To Do
-* [ ] Add pacman install list `$ pacman -Qqe > pkglist.txt`
-* [ ] Set packman config?
-* [ ] Setup git ssh
-* [ ] Seperate Xorg and Wayland script maybe per desktop manager?
