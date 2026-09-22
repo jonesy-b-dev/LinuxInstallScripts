@@ -15,6 +15,8 @@ read -p "Do you want to install the Hyprland ecosystem? (y/n): " install_hyprlan
 read -p "Do you want to install Brave browser? (y/n): " install_brave
 read -p "Do you want to install Hermit Nerd font? (y/n): " install_hermit
 read -p "Do you want to setup a Git SSH key? (y/n): " install_gitssh
+read -p "Do you want to setup the Jonesy config files? (y/n): " install_conf
+read -p "Do you have git permissions for the Jonesy conf files?: (y/n) " has_conf_perms
 
 sudo pacman -Sy
 
@@ -87,6 +89,32 @@ else
   echo "Skipping Git SSH key setup"
 fi
 
+# Setup config files
+if [[ "$install_conf" == "y" || "$install_conf" == "Y" ]]; then
+	mkdir -p "${HOME}/dev/other"
+	cd "${HOME}/dev/other"
+
+	if [ ! -d "${HOME}/dev/other/LinuxConfigFiles" ]
+	then
+		if [[ "$has_conf_perms" == "y" || "$has_conf_perms" == "Y" ]]; then
+			git clone git@github.com:jonesy-b-dev/LinuxConfigFiles.git
+		else
+			git clone https://github.com/jonesy-b-dev/LinuxConfigFiles.git
+		fi
+	else
+		echo "LinuxConfigFiles already cloned, skipping."
+	fi
+
+	cd ./LinuxConfigFiles
+	find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec cp -r {} "${HOME}/" \;
+	cd ..
+	rm -rf "${HOME}/data"
+	rm "${HOME}/README.md"
+else
+  echo "Skipping Jonesy config setup"
+fi
+
+# Other settings
 # Enable pacman timer
 echo "Enabaling pacman timer..."
 sudo systemctl enable --now paccache.timer
