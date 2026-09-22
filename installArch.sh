@@ -14,6 +14,7 @@ echo " "
 read -p "Do you want to install the Hyprland ecosystem? (y/n): " install_hyprland
 read -p "Do you want to install Brave browser? (y/n): " install_brave
 read -p "Do you want to install Hermit Nerd font? (y/n): " install_hermit
+read -p "Do you want to setup a Git SSH key? (y/n): " install_gitssh
 
 sudo pacman -Sy
 
@@ -63,6 +64,27 @@ if [[ "$install_hermit" == "y" || "$install_hermit" == "Y" ]]; then
   echo "Hermit Nerd font installed"
 else
   echo "Skipping Hermit Nerd font installation"
+fi
+
+# Setup SSH key
+if [[ "$install_gitssh" == "y" || "$install_gitssh" == "Y" ]]; then
+	ssh_key_path="${HOME}/.ssh/id_ed25519"
+
+    if [ -f "${ssh_key_path}" ]
+    then
+        echo "SSH key already exists at ${ssh_key_path}, skipping generation."
+    else
+        read -p "Enter email for SSH key: " ssh_key_email
+        ssh-keygen -t ed25519 -C "${ssh_key_email}" -f "${ssh_key_path}"
+    fi
+
+    eval "$(ssh-agent -s)"
+    ssh-add "${ssh_key_path}"
+
+	echo "Add the following to your GitHub SSH keys"
+	cat "${ssh_key_path}.pub"
+else
+  echo "Skipping Git SSH key setup"
 fi
 
 # Enable pacman timer
