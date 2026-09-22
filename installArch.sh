@@ -1,4 +1,16 @@
-# Install yay AUR
+set -euo pipefail
+
+echo "########################################################################"
+echo "#                                                                      #"
+echo "# Welcome to the Arch installer, don't leave your keyboard unattended, #"
+echo "# you will be propted here and there!                                  #"
+echo "# Run at own risk, I am not liable for any damage caused to the system #"
+echo "#                                                                      #"
+echo "########################################################################"
+echo " "
+
+echo "Please only answer y, Y, n, or N to these questions; script will not work with anything else"
+echo " "
 read -p "Do you want to install the Hyprland ecosystem? (y/n): " install_hyprland
 read -p "Do you want to install Brave browser? (y/n): " install_brave
 read -p "Do you want to install Hermit Nerd font? (y/n): " install_hermit
