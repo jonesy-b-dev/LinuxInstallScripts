@@ -34,7 +34,7 @@ makepkg -si
 
 # Install other packages
 echo "Installing base packages..."
-sudo pacman -S vi vim curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish
+sudo pacman -S vi vim curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto
 echo "Installation base packages compelted"
 
 # Install Hypr ecosystem
@@ -118,3 +118,8 @@ fi
 # Enable pacman timer
 echo "Enabaling pacman timer..."
 sudo systemctl enable --now paccache.timer
+
+# Update mime
+rm -rf ~/.cache/mimeapps.list ~/.cache/mimemagic
+update-desktop-database
+update-mime-database ~/.local/share/mime/
