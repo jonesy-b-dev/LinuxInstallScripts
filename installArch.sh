@@ -16,7 +16,11 @@ read -p "Do you want to install Brave browser? (y/n): " install_brave
 read -p "Do you want to install Hermit Nerd font? (y/n): " install_hermit
 read -p "Do you want to setup a Git SSH key? (y/n): " install_gitssh
 read -p "Do you want to setup the Jonesy config files? (y/n): " install_conf
-read -p "Do you have git permissions for the Jonesy conf files?: (y/n) " has_conf_perms
+if [[ "$install_gitssh" == "y" || "$install_gitssh" == "Y" ]]; then
+	read -p "Do you have git permissions for the Jonesy conf files?: (y/n) " has_conf_perms
+else
+	has_conf_perms="n"
+fi
 
 sudo pacman -Sy
 
