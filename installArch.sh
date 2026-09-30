@@ -110,17 +110,33 @@ if [[ "$install_conf" == "y" || "$install_conf" == "Y" ]]; then
 	cd ..
 	rm -rf "${HOME}/data"
 	rm "${HOME}/README.md"
-	chmod +x "${HOME}/.local/scripts/*
+	chmod +x "${HOME}/.local/scripts/*"
 else
   echo "Skipping Jonesy config setup"
 fi
 
 # Other settings
-# Enable pacman timer
+
+# Pacman
 echo "Enabaling pacman timer..."
 sudo systemctl enable --now paccache.timer
 
+echo "Setting up pacman settings..."
+
+PACMAN_CONF="/etc/pacman.conf"
+sudo sed -i 's/^#Color/Color/' "$PACMAN_CONF"
+sudo sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' "$PACMAN_CONF"
+sudo sed -i 's/^#\?ParallelDownloads.*/ParallelDownloads = 5/' "$PACMAN_CONF"
+
+if ! grep -q "^ILoveCandy" "$PACMAN_CONF"
+then
+    sudo sed -i '/^\[options\]/a ILoveCandy' "$PACMAN_CONF"
+fi
+
 # Update mime
+echo "Updating mime"
 rm -rf ~/.cache/mimeapps.list ~/.cache/mimemagic
 update-desktop-database
 update-mime-database ~/.local/share/mime/
+
+echo "Done!"
