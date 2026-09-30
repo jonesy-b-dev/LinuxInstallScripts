@@ -110,6 +110,7 @@ if [[ "$install_conf" == "y" || "$install_conf" == "Y" ]]; then
 	cd ..
 	rm -rf "${HOME}/data"
 	rm "${HOME}/README.md"
+	chmod +x "${HOME}/.local/scripts/*
 else
   echo "Skipping Jonesy config setup"
 fi
