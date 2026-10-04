@@ -115,6 +115,11 @@ if [[ "$install_conf" == "y" || "$install_conf" == "Y" ]]; then
 	rm -rf "${HOME}/data"
 	rm "${HOME}/README.md"
 	chmod +x "${HOME}/.local/scripts/*"
+
+	echo "Fixing opening files in neovim..."
+	sudo sed -i 's|^Exec=.*|Exec=/usr/bin/foot -e /usr/bin/nvim %F|' "/usr/share/applications/nvim.desktop"
+
+	echo "Completed installing config files"
 else
   echo "Skipping Jonesy config setup"
 fi
@@ -122,10 +127,10 @@ fi
 # Other settings
 
 # Pacman
+echo "Setting up pacman settings..."
+
 echo "Enabaling pacman timer..."
 sudo systemctl enable --now paccache.timer
-
-echo "Setting up pacman settings..."
 
 PACMAN_CONF="/etc/pacman.conf"
 sudo sed -i 's/^#Color/Color/' "$PACMAN_CONF"
