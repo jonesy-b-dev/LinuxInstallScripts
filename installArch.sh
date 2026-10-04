@@ -143,4 +143,11 @@ rm -rf ~/.cache/mimeapps.list ~/.cache/mimemagic
 update-desktop-database
 update-mime-database ~/.local/share/mime/
 
-echo "Done!"
+echo "########################################################################"
+echo "#                                                                      #"
+echo "# Installation is complete!											 #"
+echo "# It's a good idea to reboot now and check if everything is fine       #"
+echo "# Again, I am not liable for any damage caused to the system #"
+echo "#                                                                      #"
+echo "########################################################################"
+echo " "
