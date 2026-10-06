@@ -21,6 +21,7 @@ if [[ "$install_gitssh" == "y" || "$install_gitssh" == "Y" ]]; then
 else
 	has_conf_perms="n"
 fi
+read -p "Do you want to install rice'ing tools?: (y/n) " install_rice
 
 sudo pacman -Sy
 
@@ -38,7 +39,7 @@ makepkg -si
 
 # Install other packages
 echo "Installing base packages..."
-sudo pacman -S vi vim curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto
+sudo pacman -S vi vim curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto noto-fonts noto-fonts-emoji
 echo "Installation base packages compelted"
 
 # Install Hypr ecosystem
@@ -124,6 +125,20 @@ else
   echo "Skipping Jonesy config setup"
 fi
 
+if [[ "$install_rice" == "y" || "$install_rice" == "Y" ]]; then
+	sudo pacman -S --needed --noconfirm nwg-look qt5ct qt6ct kvantum
+	yay -S --needed marwaita-icons-git
+
+	mkdir -p "${HOME}/.config/gtk-4.0"
+	ln -sf "${HOME}/.local/share/themes/Materia-custom/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
+	ln -sf "${HOME}/.local/share/themes/Materia-custom/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+	ln -sf "${HOME}/.local/share/themes/Materia-custom/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
+
+	gsettings set org.gnome.desktop.interface gtk-theme 'Materia-custom'
+	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+else
+	echo "Skipping rice'ing setup"
+fi
 # Other settings
 
 # Pacman
