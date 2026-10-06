@@ -111,12 +111,10 @@ if [[ "$install_conf" == "y" || "$install_conf" == "Y" ]]; then
 	fi
 
 	cd ./LinuxConfigFiles
-	find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec cp -r {} "${HOME}/" \;
+	find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'data' ! -name 'README.md' -exec cp -r {} "${HOME}/" \;
 	cd ..
-	rm -rf "${HOME}/data"
-	rm "${HOME}/README.md"
-	chmod +x "${HOME}/.local/scripts/*"
-
+	chmod +x "${HOME}/.local/scripts/"*
+	
 	echo "Fixing opening files in neovim..."
 	sudo sed -i 's|^Exec=.*|Exec=/usr/bin/foot -e /usr/bin/nvim %F|' "/usr/share/applications/nvim.desktop"
 
