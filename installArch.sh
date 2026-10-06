@@ -134,6 +134,7 @@ if [[ "$install_rice" == "y" || "$install_rice" == "Y" ]]; then
 
 	gsettings set org.gnome.desktop.interface gtk-theme 'Materia-custom'
 	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+	gsettings set org.gnome.desktop.interface icon-theme 'Marwaita Dark'
 else
 	echo "Skipping rice'ing setup"
 fi
