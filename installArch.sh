@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -euo pipefail
 
 echo "########################################################################"
@@ -23,11 +24,11 @@ else
 fi
 read -p "Do you want to install rice'ing tools?: (y/n) " install_rice
 
-sudo pacman -Sy
+echo "Performing system update and needed packages first..."
+sudo pacman -Syu --needed --noconfirm git base-devel pacman-contrib 
 
 # Install yay AUR
 echo "Installing yay..."
-sudo pacman -S base-devel
 mkdir -p "${HOME}/dev/other"
 cd "${HOME}/dev/other"
 if [ ! -d "${HOME}/dev/other/yay-git" ]
@@ -39,7 +40,7 @@ makepkg -si
 
 # Install other packages
 echo "Installing base packages..."
-sudo pacman -S vi vim curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto noto-fonts noto-fonts-emoji
+sudo pacman -S vi vim open-ssh curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto noto-fonts noto-fonts-emoji desktop-file-utils shared-mime-info
 echo "Installation base packages compelted"
 
 # Install Hypr ecosystem
@@ -124,7 +125,7 @@ else
 fi
 
 if [[ "$install_rice" == "y" || "$install_rice" == "Y" ]]; then
-	sudo pacman -S --needed --noconfirm nwg-look qt5ct qt6ct kvantum
+	sudo pacman -S --needed --noconfirm nwg-look qt5ct qt6ct kvantum dconf 
 	yay -S --needed marwaita-icons-git
 
 	mkdir -p "${HOME}/.config/gtk-4.0"
@@ -132,9 +133,11 @@ if [[ "$install_rice" == "y" || "$install_rice" == "Y" ]]; then
 	ln -sf "${HOME}/.local/share/themes/Materia-custom/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
 	ln -sf "${HOME}/.local/share/themes/Materia-custom/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
 
+	dbus-run-session -- bash -c "
 	gsettings set org.gnome.desktop.interface gtk-theme 'Materia-custom'
 	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 	gsettings set org.gnome.desktop.interface icon-theme 'Marwaita Dark'
+	"
 else
 	echo "Skipping rice'ing setup"
 fi
@@ -160,6 +163,7 @@ fi
 echo "Updating mime"
 rm -rf ~/.cache/mimeapps.list ~/.cache/mimemagic
 update-desktop-database
+mkdir -p "${HOME}/.local/share/mime"
 update-mime-database ~/.local/share/mime/
 
 echo "########################################################################"
