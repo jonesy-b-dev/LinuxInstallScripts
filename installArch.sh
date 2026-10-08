@@ -40,12 +40,12 @@ makepkg -si
 
 # Install other packages
 echo "Installing base packages..."
-sudo pacman -S vi vim open-ssh curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto noto-fonts noto-fonts-emoji desktop-file-utils shared-mime-info
+sudo pacman -S --needed --noconfirm vi vim open-ssh curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto noto-fonts noto-fonts-emoji desktop-file-utils shared-mime-info
 echo "Installation base packages compelted"
 
 # Install Hypr ecosystem
 if [[ "$install_hyprland" == "y" || "$install_hyprland" == "Y" ]]; then
-    sudo pacman -S hyprland hyprsunset hyprlock hyprpicker hyprshot hyprpm hyprpaper hyprshutdown
+    sudo pacman -S --needed --noconfirm hyprland hyprsunset hyprlock hyprpicker hyprshot hyprpm hyprpaper hyprshutdown waybar
     echo "Hyprland installed successfully."
 else
     echo "Skipping Hyprland installation."
@@ -54,7 +54,7 @@ fi
 #Install Brave
 if [[ "$install_brave" == "y" || "$install_brave" == "Y" ]]; then
 	echo "Installing Brave..."
-	yay -S brave-bin
+	yay --needed -S brave-bin
 	echo "Brave installed"
 else
 	echo "Skipping Brave install"
@@ -69,6 +69,7 @@ if [[ "$install_hermit" == "y" || "$install_hermit" == "Y" ]]; then
   curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hermit.zip -o Hermit.zip
   sudo mkdir -p /usr/share/fonts/Hermit
   sudo unzip Hermit.zip -d /usr/share/fonts/Hermit
+  
   echo "Hermit Nerd font installed"
 else
   echo "Skipping Hermit Nerd font installation"
