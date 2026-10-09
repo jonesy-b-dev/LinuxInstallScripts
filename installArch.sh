@@ -45,7 +45,7 @@ echo "Installation base packages compelted"
 
 # Install Hypr ecosystem
 if [[ "$install_hyprland" == "y" || "$install_hyprland" == "Y" ]]; then
-    sudo pacman -S --needed --noconfirm hyprland hyprsunset hyprlock hyprpicker hyprshot hyprpm hyprpaper hyprshutdown waybar
+    sudo pacman -S --needed --noconfirm hyprland hyprsunset hyprlock hyprpicker hyprshot hyprpm hyprpaper hyprshutdown waybar ulauncher-git
     echo "Hyprland installed successfully."
 else
     echo "Skipping Hyprland installation."
@@ -164,8 +164,7 @@ fi
 echo "Updating mime"
 rm -rf ~/.cache/mimeapps.list ~/.cache/mimemagic
 update-desktop-database
-mkdir -p "${HOME}/.local/share/mime"
-update-mime-database ~/.local/share/mime/
+
 
 echo "########################################################################"
 echo "#                                                                      #"
