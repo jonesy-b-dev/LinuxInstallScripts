@@ -4,8 +4,9 @@ set -euo pipefail
 echo "########################################################################"
 echo "#                                                                      #"
 echo "# Welcome to the Arch installer, don't leave your keyboard unattended, #"
-echo "# you will be propted here and there!                                  #"
+echo "# you will be prompted here and there!                                  #"
 echo "# Run at own risk, I am not liable for any damage caused to the system #"
+echo "# you can also use virtual machine if you want to test it out first. #"                                        
 echo "#                                                                      #"
 echo "########################################################################"
 echo " "
@@ -40,7 +41,7 @@ makepkg -si
 
 # Install other packages
 echo "Installing base packages..."
-sudo pacman -S --needed --noconfirm vi vim fzf trash-cli tmux open-ssh curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto noto-fonts noto-fonts-cjk noto-fonts-emoji desktop-file-utils shared-mime-info nemo
+sudo pacman -S --needed --noconfirm vi vim fzf trash-cli tmux openssh curl ripgrep neovim unzip foot feh tree cmake man man-pages tldr btop gdb fd lazygit gnome-themes-extra lf fish ristretto noto-fonts noto-fonts-cjk noto-fonts-emoji desktop-file-utils shared-mime-info nemo
 echo "Installation base packages compelted"
 
 # Install Hypr ecosystem
